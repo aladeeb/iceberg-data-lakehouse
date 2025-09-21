@@ -1,0 +1,68 @@
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio_data:/data
+    networks:
+      lakehouse_network:
+        aliases:
+          - minio
+    command: server /data --console-address ":9090"
+
+  # spark:
+  #   container_name: spark
+  #   image: bitnami/spark:latest
+  #   ports:
+  #     - "8080:8080"  # Spark Master port
+  #     - "8081:8081"  # Spark Web UI port
+  #   environment:
+  #     SPARK_MASTER: "spark://spark-master:7077"
+  #     SPARK_MODE: "master"
+  #   networks:
+  #     lakehouse_network:
+  #   depends_on:
+  #     - spark-master
+
+  spark-master:
+    container_name: spark-master
+    image: bitnami/spark:latest
+    ports:
+      - "7077:7077"  # Spark Master port
+      - "8082:8080"  # Spark Web UI port
+    environment:
+      SPARK_MODE: "master"
+      SPARK_MASTER_HOST: "spark-master"
+    command: ["spark-class", "org.apache.spark.deploy.master.Master"] 
+    volumes:
+      - ./src/ingestion:/opt/spark/scripts
+    networks:
+      lakehouse_network:
+        aliases:
+          - spark-master
+
+  spark-worker:
+    container_name: spark-worker
+    image: bitnami/spark:latest
+    ports:
+      - "8083:8081"  # Map worker UI port to host
+    environment:
+      SPARK_MODE: "worker"
+      SPARK_MASTER_URL: "spark://spark-master:7077"
+      SPARK_WORKER_TIMEOUT: "60s"
+    networks:
+      lakehouse_network:
+    depends_on:
+      - spark-master
+
+volumes:
+  minio_data:
+
+networks:
+  lakehouse_network:

@@ -21,6 +21,14 @@ Installation
     make create-bucket BUCKET_NAME=bronze
     ```
 
+
+### Links
+- MinIO Console: http://localhost:9001
+- S3 Endpoint: http://localhost:9000
+- Spark Master Web UI: http://localhost:8080
+- Spark Worker Web UI: http://localhost:8081
+
+
 Learning References
 ---
 - (Setting up Apache Spark on Docker)[https://medium.com/@MarinAgli1/setting-up-a-spark-standalone-cluster-on-docker-in-layman-terms-8cbdc9fdd14b]

@@ -10,3 +10,13 @@ set-minio-alias:
 create-bucket:
 	@mc mb $(MINIO_ALIAS)/$(BUCKET_NAME)
 	@echo "Bucket '$(BUCKET_NAME)' created in MinIO alias '$(MINIO_ALIAS)'"
+
+up:
+	docker compose up -d --build
+
+down:
+	docker compose down --rmi all
+	rm -rf data/output && rm -rf warehouse
+
+dev:
+	docker exec -it spark-master bash
