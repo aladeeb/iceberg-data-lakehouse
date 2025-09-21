@@ -9,6 +9,18 @@ Building a local data lakehouse solution
 - Trino (as a reader engine)
 - Apache Airflow (for orchestration, not yet decided if this will be in the scope or not)
 
+Installation
+---
+1. Initialize the docker containers
+    ```bash
+    docker compose up -d
+    ```
+2. Setup the MinIO alias and create the buckets
+    ```bash
+    make set-minio-alias
+    make create-bucket BUCKET_NAME=bronze
+    ```
+
 Learning References
 ---
 - (Setting up Apache Spark on Docker)[https://medium.com/@MarinAgli1/setting-up-a-spark-standalone-cluster-on-docker-in-layman-terms-8cbdc9fdd14b]
