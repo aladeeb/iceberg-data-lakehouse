@@ -75,7 +75,6 @@ RUN chmod u+x /opt/spark/entrypoint.sh
 # RUN pip3 install notebook
 
 # ENV JUPYTER_PORT=8889
-
 # ENV PYSPARK_DRIVER_PYTHON=jupyter
 # ENV PYSPARK_DRIVER_PYTHON_OPTS="notebook --no-browser --allow-root --ip=0.0.0.0 --port=${JUPYTER_PORT}"
 # # --ip=0.0.0.0 - listen all interfaces
