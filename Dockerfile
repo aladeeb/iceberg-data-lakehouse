@@ -69,7 +69,6 @@ RUN curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.5
 COPY entrypoint.sh .
 RUN chmod u+x /opt/spark/entrypoint.sh
 
-
 # # Optionally install Jupyter
 # FROM pyspark-runner AS pyspark-jupyter
 
