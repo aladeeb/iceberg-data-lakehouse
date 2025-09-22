@@ -65,7 +65,6 @@ FROM pyspark AS pyspark-runner
 RUN curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar -Lo /opt/spark/jars/hadoop-aws-3.3.4.jar
 RUN curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.517/aws-java-sdk-bundle-1.12.517.jar -Lo /opt/spark/jars/aws-java-sdk-bundle-1.12.517.jar
 
-
 COPY entrypoint.sh .
 RUN chmod u+x /opt/spark/entrypoint.sh
 
