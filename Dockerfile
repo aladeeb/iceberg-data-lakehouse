@@ -58,26 +58,19 @@ RUN pip3 install -r requirements.txt
 
 FROM pyspark AS pyspark-runner
 
-# Download iceberg spark runtime
-RUN curl https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-spark-runtime-3.4_2.12/1.4.3/iceberg-spark-runtime-3.4_2.12-1.4.3.jar -Lo /opt/spark/jars/iceberg-spark-runtime-3.4_2.12-1.4.3.jar
-RUN curl https://repo1.maven.org/maven2/org/apache/iceberg/iceberg-spark3-runtime/0.13.1/iceberg-spark3-runtime-0.13.1.jar -Lo /opt/spark/jars/iceberg-spark3-runtime-0.13.1.jar
-
-# Download delta jars
-RUN curl https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar -Lo /opt/spark/jars/delta-core_2.12-2.4.0.jar
-RUN curl https://repo1.maven.org/maven2/io/delta/delta-spark_2.12/3.2.0/delta-spark_2.12-3.2.0.jar -Lo /opt/spark/jars/delta-spark_2.12-3.2.0.jar
-RUN curl https://repo1.maven.org/maven2/io/delta/delta-storage/3.2.0/delta-storage-3.2.0.jar -Lo /opt/spark/jars/delta-storage-3.2.0.jar
-
-# Download hudi jars
-RUN curl https://repo1.maven.org/maven2/org/apache/hudi/hudi-spark3-bundle_2.12/0.15.0/hudi-spark3-bundle_2.12-0.15.0.jar -Lo /opt/spark/jars/hudi-spark3-bundle_2.12-0.15.0.jar
+# # Download iceberg spark runtime
+# TBD
 
 # Download hadoop-aws and aws-java-sdk-bundle jars
 RUN curl https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar -Lo /opt/spark/jars/hadoop-aws-3.3.4.jar
 RUN curl https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.517/aws-java-sdk-bundle-1.12.517.jar -Lo /opt/spark/jars/aws-java-sdk-bundle-1.12.517.jar
+
+
 COPY entrypoint.sh .
 RUN chmod u+x /opt/spark/entrypoint.sh
 
 
-# Optionally install Jupyter
+# # Optionally install Jupyter
 # FROM pyspark-runner AS pyspark-jupyter
 
 # RUN pip3 install notebook
