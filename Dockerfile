@@ -81,7 +81,6 @@ RUN chmod u+x /opt/spark/entrypoint.sh
 # # --port=${JUPYTER_PORT} - listen ip on port 8889
 # # --allow-root - to run Jupyter in this container by root user. It is adviced to change the user to non-root.
 
-
 ENTRYPOINT ["./entrypoint.sh"]
 CMD [ "bash" ]
 
